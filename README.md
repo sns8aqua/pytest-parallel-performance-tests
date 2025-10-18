@@ -98,10 +98,6 @@ python -m pytest tests/performance/ -n auto -v
 
 ### Advanced Parallel Options
 
-#### Distributed by Test File
-```bash
-python -m pytest tests/performance/ -n 4 --dist worksteal -v
-```
 
 #### Distributed by Individual Tests
 ```bash
@@ -207,32 +203,6 @@ tests/performance/test_io_performance_base.py::TestIOPerformanceBase::test_large
 ...
 ============================== 186 passed in 25.34s ==============================
 ```
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-1. **Virtual Environment Not Activated**
-   ```bash
-   # Make sure you see (venv) in your prompt
-   source venv/bin/activate  # macOS/Linux
-   venv\Scripts\activate     # Windows
-   ```
-
-2. **Dependencies Not Installed**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Permission Issues**
-   ```bash
-   # On macOS/Linux, ensure proper permissions
-   chmod +x venv/bin/activate
-   ```
-
-4. **Memory Issues with High Core Count**
-   - Reduce the number of cores if you encounter memory issues
-   - Use `--maxfail=1` to stop on first failure
 
 ### Performance Tips
 
