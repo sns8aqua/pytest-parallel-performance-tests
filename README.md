@@ -35,6 +35,42 @@ cd pytest-parallel-performance-tests
    pip install -r requirements.txt
    ```
 
+## 🐳 Run with Docker
+
+If you want a reproducible runtime (same Python and dependency behavior on every machine), use Docker.
+
+### Build Image
+
+```bash
+docker build -t pytest-parallel-performance-tests:local .
+```
+
+### Run Test Suite in Container
+
+```bash
+mkdir -p reports
+docker run --rm \
+   -e PYTEST_WORKERS=4 \
+   -v "$PWD/reports:/workspace/reports" \
+   pytest-parallel-performance-tests:local
+```
+
+This generates:
+- `reports/junit.xml`
+- `reports/pytest.log`
+
+## 🔁 Jenkins Pipeline
+
+The repository includes a root `Jenkinsfile` configured to:
+
+- Build the Docker image for this project
+- Run pytest performance tests inside the container
+- Publish JUnit report and archive `reports/*`
+
+Use a Jenkins Pipeline job with:
+- **Definition**: Pipeline script from SCM
+- **Script Path**: `Jenkinsfile`
+
 ## 📦 Dependencies
 
 The project uses the following core dependencies:
