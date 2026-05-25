@@ -13,7 +13,7 @@ Typical production use cases:
 
 ## Library Scaffolding Added in This Repo
 
-- `ci/shared-library/vars/runPytestPerfInDocker.groovy`
+- `vars/runPytestPerfInDocker.groovy`  ← Jenkins reads this at repo root
 - `Jenkinsfile` (single pipeline entrypoint)
 
 ## Production Pattern (Recommended)
@@ -38,6 +38,7 @@ For your first lab, you can start by moving the `ci/shared-library` content into
    - Source Code Management: **Git**
    - Project Repository: your shared library Git URL
    - Credentials: set if private repo
+   - Library Path: leave EMPTY (vars/ is at repo root)
 4. Save.
 
 ## Use It in Pipeline
