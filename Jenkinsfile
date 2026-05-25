@@ -13,6 +13,13 @@ pipeline {
     timestamps()
   }
 
+  // Trigger: run this pipeline automatically on every push to main.
+  // Requires GitHub plugin in Jenkins + a GitHub webhook pointing to Jenkins.
+  // For local Jenkins, expose it first with: ngrok http 8080
+  triggers {
+    githubPush()
+  }
+
   // Build-time inputs exposed in Jenkins UI.
   parameters {
     // Controls pytest-xdist parallel workers passed to shared library step.

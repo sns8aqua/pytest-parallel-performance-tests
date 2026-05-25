@@ -7,10 +7,12 @@ def call(Map cfg = [:]) {
   sh """
     set -eu
     command -v docker >/dev/null 2>&1 || {
-      echo "ERROR: docker CLI not found on Jenkins node."
+      echo "ERROR: docker CLI not found on Jenkins node PATH."
+      echo "Fix node provisioning (service PATH / agent image), not pipeline code."
       exit 1
     }
 
+    docker version --format 'Docker version {{.Client.Version}}'
     docker build -f "${dockerfile}" -t "${imageName}" .
 
     mkdir -p "${reportDir}"
