@@ -1,0 +1,41 @@
+# trivy.yaml
+# Trivy policy configuration (policy-as-code).
+# Committed to repo so security policy is versioned alongside application code.
+# Reference: https://aquasecurity.github.io/trivy/latest/docs/references/configuration/config-file/
+
+# Vulnerability scanning configuration
+vulnerability:
+  # Scan types to check in Docker images
+  type:
+    - os          # OS packages (apt, apk, yum)
+    - library     # Language-specific packages (pip, npm, etc.)
+
+  # Ignore unfixed vulnerabilities (no patch available yet)
+  # Set to false in stricter environments to surface all known CVEs
+  ignore-unfixed: true
+
+# Severity levels to include in scan output
+# UNKNOWN, LOW, MEDIUM, HIGH, CRITICAL
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+
+# Output configuration
+format: table
+
+# Secret scanning - detect hardcoded credentials in image layers
+secret:
+  config: trivy-secret.yaml   # optional: custom secret patterns (create if needed)
+
+# Misconfiguration scanning
+misconfiguration:
+  # Scan Dockerfile for known bad practices
+  include-non-failures: false
+
+# Cache configuration
+cache:
+  # Backend: fs (local filesystem) or redis (shared across agents)
+  backend: fs

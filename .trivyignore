@@ -1,0 +1,10 @@
+# .trivyignore
+# Accepted / reviewed CVEs that are explicitly ignored in scans.
+#
+# Format: one CVE ID per line, with a comment explaining WHY it is accepted.
+# Every entry here must be reviewed and approved (treat like a security exception).
+# Re-evaluate entries at each dependency upgrade.
+#
+# Example (uncomment to use):
+# CVE-2023-XXXXX   # accepted: no fix available, mitigated by network isolation
+# CVE-2024-XXXXX   # accepted: only affects feature not used in this image
